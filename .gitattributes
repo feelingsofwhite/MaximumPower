@@ -1,0 +1,12 @@
+#msysgit's install loves changing the default to autocrlf=true, which only makes sense if your dealing with linux systems.  
+#I'm new to gitattributes because I usually just set --global autocrlf=false, but I don't want to force that upon Team MaximumPower... hope
+#the following works, which should effectively mean "treat everything as binary" :)  ~james
+
+* -text
+
+# could implement this to make ps1 files be normalized, but I think this shouldn't matter because I assume everyones using windows
+# so it shouldnt matter.
+#
+# *.ps1     text eol=crlf
+# *.psm1    text eol=crlf
+
