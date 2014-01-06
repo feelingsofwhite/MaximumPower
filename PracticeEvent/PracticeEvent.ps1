@@ -23,15 +23,18 @@ if ($credential -eq $null){        #Gets credentials on first use
 
 #>
 
+$IpAddressOfThisComputer = (gwmi win32_networkadapterconfiguration | where-object {$_.DefaultIPGateway -ne $null  -and $_ipaddress -ne "0.0.0.0"}).IPAddress | select -first 1
+
+$IpAddressOfThisComputer = 192.168.2.192
 
 # Reference of how to use Add-member
 #   Add-Member -InputObject $custObj -MemberType NoteProperty -Name "weight" -Value 5
 
-$computer = Add-property (Get-WmiObject win32_computersystem -ComputerName 192.168.2.192 -Credential $credential)
+$computer = Add-property (Get-WmiObject win32_computersystem -ComputerName $IpAddressOfThisComputer -Credential $credential)
 
 "`$computer currently contains:`n $computer"
 
-Get-WmiObject win32_computersystem -ComputerName 192.168.2.192 -Credential $credential | fl
+Get-WmiObject win32_computersystem -ComputerName $IpAddressOfThisComputer -Credential $credential | fl
 
 <#values to get
 #IP  Address $CurrentIP
